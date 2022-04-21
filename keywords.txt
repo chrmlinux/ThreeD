@@ -1,0 +1,9 @@
+ThreeD 	KEYWORD1	ThreeD
+td 			KEYWORD1 	ThreeD
+
+begin		KEYWORD2
+end			KEYWORD2
+update	KEYWORD2
+cnv			KEYWORD2
+mov			KEYWORD2
+rot			KEYWORD2
