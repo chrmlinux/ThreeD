@@ -5,6 +5,9 @@ TFT_eSprite spr(&M5.Lcd);
 #include "mdl.h"
 static ThreeD td;
 
+uint16_t _hw;
+uint16_t _hh;
+
 uint32_t getfps()
 {
   static uint32_t psec = 0;
@@ -25,13 +28,11 @@ uint32_t getfps()
 void draw(float fact, uint16_t mdlpt, MDL2D_T *mdl, uint16_t lnkpt, LNK_T *lnk)
 {
   spr.fillRect(0, 0, spr.width(), spr.height(), TFT_BLACK);
-  uint16_t hw = spr.width() / 2;
-  uint16_t hh = spr.height() / 2;
   for (int i=0; i<lnkpt; i++) {
-    uint16_t x1 = hw + (mdl[lnk[i].start].x * fact);
-    uint16_t y1 = hh + (mdl[lnk[i].start].y * fact);
-    uint16_t x2 = hw + (mdl[lnk[i].end].x * fact);
-    uint16_t y2 = hh + (mdl[lnk[i].end].y * fact);
+    uint16_t x1 = _hw + (mdl[lnk[i].start].x * fact);
+    uint16_t y1 = _hh + (mdl[lnk[i].start].y * fact);
+    uint16_t x2 = _hw + (mdl[lnk[i].end].x * fact);
+    uint16_t y2 = _hh + (mdl[lnk[i].end].y * fact);
     spr.setCursor(x1, y1); spr.print(lnk[i].start);
     spr.drawLine(x1, y1, x2, y2, lnk[i].color);
   }
@@ -44,6 +45,8 @@ void setup(void)
   M5.Lcd.setRotation(1);
   spr.createSprite(M5.Lcd.width(), M5.Lcd.height());
   td.begin();
+  _hw = spr.width() / 2;
+  _hh = spr.height() / 2;
 }
 
 void loop(void)

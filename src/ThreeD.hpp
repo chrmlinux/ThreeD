@@ -53,8 +53,9 @@ class ThreeD {
     uint16_t cnv(MDL3D_T vw, uint16_t dtcnt, MDL3D_T *src, MDL2D_T *dst) {
       uint16_t rtn = 0;
       for (register int i = 0; i < dtcnt; i++) {
-        dst[i].x = (src[i].x + vw.x) / (src[i].z + vw.z);
-        dst[i].y = (src[i].y + vw.y) / (src[i].z + vw.z);
+					float inverted = 1.0f / (src[i].z + vw.z);
+					dst[i].x = (src[i].x + vw.x) * inverted;
+					dst[i].y = (src[i].y + vw.y) * inverted;
       }
       return rtn;
     }
@@ -63,21 +64,24 @@ class ThreeD {
     // rot
     //============================================
     void rot(uint16_t mode, uint16_t s, uint16_t dtcnt, MDL3D_T *src, MDL3D_T *dst) {
+			float rs = radians(s);
+			float cr = cos(rs);
+			float sr = sin(rs);
       for (register int i = 0; i < dtcnt; i++) {
         switch (mode) {
           case ROTX:
             dst[i].x = src[i].x;
-            dst[i].y = src[i].y * cos(radians(s)) - src[i].z * sin(radians(s));
-            dst[i].z = src[i].y * sin(radians(s)) + src[i].z * cos(radians(s));
+            dst[i].y = src[i].y * cr - src[i].z * sr;
+            dst[i].z = src[i].y * sr + src[i].z * cr;
             break;
           case ROTY:
-            dst[i].x = src[i].x * cos(radians(s)) - src[i].z * sin(radians(s));
+            dst[i].x = src[i].x * cr - src[i].z * sr;
             dst[i].y = src[i].y;
-            dst[i].z = src[i].x * sin(radians(s)) + src[i].z * cos(radians(s));
+            dst[i].z = src[i].x * sr + src[i].z * cr;
             break;
           case ROTZ:
-            dst[i].x = src[i].x * cos(radians(s)) - src[i].y * sin(radians(s));
-            dst[i].y = src[i].x * sin(radians(s)) + src[i].y * cos(radians(s));
+            dst[i].x = src[i].x * cr - src[i].y * sr;
+            dst[i].y = src[i].x * sr + src[i].y * cr;
             dst[i].z = src[i].z;
             break;
         }
