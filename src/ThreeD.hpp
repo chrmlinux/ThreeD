@@ -123,11 +123,13 @@ class ThreeD {
     // Sin
     //============================================
     float Sin(uint16_t deg) {
+			float rtn = 0.0;
       deg = deg % 360;
       if (deg <=  90) return  tsin[      deg];
       if (deg <= 180) return  tsin[180 - deg];
       if (deg <= 270) return -tsin[deg - 180];
       if (deg <= 360) return -tsin[360 - deg];
+			return rtn;
     }
 
     //============================================

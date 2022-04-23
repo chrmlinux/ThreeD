@@ -10,3 +10,5 @@ https://twitter.com/chrmlinux03/status/1517396970272620544?s=20&t=p41ftNyhEqxM7u
 # v0.0.3
 sin table
 https://twitter.com/chrmlinux03/status/1517708665398390784?s=20&t=otLGv9aPCeC3UMpxtSPKEQ
+# v0.0.3.1
+sin function no return
