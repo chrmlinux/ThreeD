@@ -1,29 +1,12 @@
 #include <M5StickC.h>
 TFT_eSprite spr(&M5.Lcd);
 
-#include <ThreeD.hpp>
+#include "ThreeD.hpp"
 #include "mdl.h"
 static ThreeD td;
 
 uint16_t _hw;
 uint16_t _hh;
-
-uint32_t getfps()
-{
-  static uint32_t psec = 0;
-  static uint32_t cnt = 0;
-  static uint32_t fps = 0;
-  uint32_t sec = 0;
-
-  sec = millis() / 1000;
-  ++cnt;
-  if (psec != sec) {
-    psec = sec;
-    fps = cnt;
-    cnt = 0;
-  }
-  return fps;
-}
 
 void draw(float fact, uint16_t mdlpt, MDL2D_T *mdl, uint16_t lnkpt, LNK_T *lnk)
 {
@@ -33,8 +16,8 @@ void draw(float fact, uint16_t mdlpt, MDL2D_T *mdl, uint16_t lnkpt, LNK_T *lnk)
     uint16_t y1 = _hh + (mdl[lnk[i].start].y * fact);
     uint16_t x2 = _hw + (mdl[lnk[i].end].x * fact);
     uint16_t y2 = _hh + (mdl[lnk[i].end].y * fact);
-    spr.setCursor(x1, y1); spr.print(lnk[i].start);
     spr.drawLine(x1, y1, x2, y2, lnk[i].color);
+    spr.setCursor(x1, y1); spr.print(lnk[i].start);
   }
 }
 
@@ -52,18 +35,19 @@ void setup(void)
 void loop(void)
 {
   float fact = 100.0;
-  static uint16_t s = 0;
+  static uint16_t deg = 0;
 
   M5.update();
 
-  td.rot(ROTY, s, mdlpt,   mdl, dst3d); 
-  td.rot(ROTZ,15, mdlpt, dst3d, dst3d); 
-  td.cnv(view, mdlpt, dst3d, dst2d);
-  draw(fact, mdlpt, dst2d, lnkpt, lnk);
+  td.rot(ROTY, deg, mdlpt,   mdl, dst3d); 
+  td.rot(ROTZ,  24, mdlpt, dst3d, dst3d); 
+//  td.rot(ROTX,  15, mdlpt, dst3d, dst3d); 
+  td.cnv(view,      mdlpt, dst3d, dst2d);
+    draw(fact,      mdlpt, dst2d, lnkpt, lnk);
 
-  spr.setCursor(8, 8); spr.print(getfps()); spr.print("fps");  
-  spr.setCursor(8,18); spr.print("y:"); spr.print(s);
+  spr.setCursor(8, 8); spr.print(td.getfps()); spr.print("fps");  
+  spr.setCursor(8,18); spr.print("y:"); spr.print(deg);
   spr.pushSprite(0, 0);
 
-  s = (s + 1) % 360;
+  deg = (deg + 1) % 360;
 }

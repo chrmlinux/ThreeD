@@ -7,3 +7,6 @@ https://twitter.com/chrmlinux03/status/1517082092370563072?s=20&t=IrXQam8UwvVeCy
 # v0.0.2
 sin/cos speed up
 https://twitter.com/chrmlinux03/status/1517396970272620544?s=20&t=p41ftNyhEqxM7uVx1lwEJg
+# v0.0.3
+sin table
+https://twitter.com/chrmlinux03/status/1517708665398390784?s=20&t=otLGv9aPCeC3UMpxtSPKEQ
