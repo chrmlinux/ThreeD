@@ -51,6 +51,6 @@ void loop(void)
   lcd.setCursor(8, 8); lcd.print(td.getfps()); lcd.print("fps");  
   lcd.setCursor(8,18); lcd.print("y:"); lcd.print(deg);
 
-  deg = (deg + 1) % 360;
+  deg = (deg + 2) % 360;
   lcd.display();
 }

@@ -14,3 +14,5 @@ https://twitter.com/chrmlinux03/status/1517708665398390784?s=20&t=otLGv9aPCeC3UM
 sin function no return
 # v0.0.5
 uintOLED sample
+# v0.0.6
+XIAO RP2040 sample
