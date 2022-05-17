@@ -16,3 +16,5 @@ sin function no return
 uintOLED sample
 # v0.0.6
 XIAO RP2040 sample
+# v0.0.7
+XIAO sample
