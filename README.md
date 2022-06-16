@@ -18,3 +18,5 @@ uintOLED sample
 XIAO RP2040 sample
 # v0.0.7
 XIAO sample
+# v0.0.8
+GC9A01_M5Atom sample
